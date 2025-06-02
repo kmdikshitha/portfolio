@@ -1,11 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+// import Link from "next/link";
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 
 export default function Home() {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <>
       {/* Navbar

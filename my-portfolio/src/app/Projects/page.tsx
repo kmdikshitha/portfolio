@@ -45,19 +45,20 @@ export default function ProjectPage() {
     <section className="max-w-6xl mx-auto px-6 py-12 text-[#761180]">
       <h2 className="text-3xl font-bold mb-4">Projects: Where Curiosity Meets Code</h2>
       <p className="text-lg leading-relaxed mb-6">
-        Projects, for me, are where ideas turn into something real. They’re not just lines of code or checkboxes on a resume—they’re how I explore, learn, 
-        and try to solve problems that actually matter. Sometimes I start a project because I notice a gap, 
-        a real issue that could use a better solution. Other times, it's simply because I’m curious 
-        and want to get hands-on with a new tool, framework, or concept. Either way, each one teaches 
-        me something new—about tech, about users, and even about how I think as a builder. 
-        These projects represent my learning journey and my effort to make something useful, thoughtful, 
+        Projects, for me, are where ideas turn into something real. They&apos;re not just lines of code or checkboxes on a resume—they&apos;re how I explore, learn,
+        and try to solve problems that actually matter. Sometimes I start a project because I notice a gap,
+        a real issue that could use a better solution. Other times, it&apos;s simply because I&apos;m curious
+        and want to get hands-on with a new tool, framework, or concept. Either way, each one teaches
+        me something new—about tech, about users, and even about how I think as a builder.
+        These projects represent my learning journey and my effort to make something useful, thoughtful,
         and a little bit better than before.
       </p>
 
       <p className="text-lg leading-relaxed mb-6">
-        Because at the end of the day, the best projects aren't just about
-        showcasing what you can build—they're about demonstrating why you chose to build it.
+        Because at the end of the day, the best projects aren&apos;t just about
+        showcasing what you can build—they&apos;re about demonstrating why you chose to build it.
       </p>
+
 
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
