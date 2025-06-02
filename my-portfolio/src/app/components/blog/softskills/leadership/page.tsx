@@ -1,6 +1,6 @@
 'useclient'
 import React from 'react';
-// import ZoomableImage from &apos../../ZoomableImage&apos;
+// import ZoomableImage from '../../ZoomableImage';
 import Image from "next/image";
 
 export default function LeadershipBlog() {
@@ -17,7 +17,7 @@ export default function LeadershipBlog() {
                 <ul className="list-disc pl-6 text-black space-y-2">
                     <li><a href="#origin" className="text-blue-500 hover:underline">The Leadership Spectrum: More Than Meets the Eye</a></li>
                     <li><a href="#casestudy" className="text-blue-500 hover:underline">MS Dhoni: The Blueprint of Calm, Composed, Effective Leadership (A Case Study)</a></li>
-                    <li><a href="#history" className="text-blue-500 hover:underline">Timeless Lessons from History&aposs Greatest Leaders</a></li>
+                    <li><a href="#history" className="text-blue-500 hover:underline">Timeless Lessons from History's Greatest Leaders</a></li>
                     <li><a href="#present" className="text-blue-500 hover:underline">Leadership in the Digital Age: Where Vision Meets Execution</a></li>
                     <li><a href="#qualities" className="text-blue-500 hover:underline">Top 5 Leadership Qualities in the IT Industry</a></li>
                     <li><a href="#dayinlife" className="text-blue-500 hover:underline">A Day in the Life: Leadership in Action</a></li>
@@ -29,13 +29,13 @@ export default function LeadershipBlog() {
 
             {/* Intro Paragraph */}
             <p className="text-lg leading-relaxed mb-6">
-                Picture this: You&aposre in a high-stakes product meeting. Deadlines are looming, stakeholders are pressuring for features, and your team is showing signs of burnout.
+                Picture this: You're in a high-stakes product meeting. Deadlines are looming, stakeholders are pressuring for features, and your team is showing signs of burnout.
                 At that moment, do you crack under pressure, or do you become calm in the storm?
                 The answer might surprise you—it comes from lessons learned on ancient battlefields, cricket stadiums, and corporate boardrooms spanning centuries.
             </p>
 
             <p className="text-lg leading-relaxed mb-6">
-                Leadership isn&apost a destination you arrive at; it&aposs a journey that began long before Silicon Valley existed and continues to evolve with every decision we make today.
+                Leadership isn't a destination you arrive at; it's a journey that began long before Silicon Valley existed and continues to evolve with every decision we make today.
             </p>
 
             {/* Section Heading */}
@@ -230,7 +230,7 @@ export default function LeadershipBlog() {
                         <strong>Legacy:</strong> Shifted Microsoft’s culture from “know-it-all” to “learn-it-all.”
                     </p>
                     <p className="mt-2">
-                        Nadella&aposs genius lay in leading a cultural revolution before initiating business transformation.
+                        Nadella's genius lay in leading a cultural revolution before initiating business transformation.
                         His leadership prioritized accessibility, inclusion, and cloud-first innovation—
                         proving that empathy can drive enterprise-scale success.
                     </p>
@@ -249,12 +249,12 @@ export default function LeadershipBlog() {
                         <strong>Leadership Style:</strong> Operational, people-first.
                     </p>
                     <p className="mt-2 text-gray-700">
-                        <strong>Legacy:</strong> Scaled Facebook&aposs monetization engine; also became a symbol of women in leadership.
+                        <strong>Legacy:</strong> Scaled Facebook's monetization engine; also became a symbol of women in leadership.
                     </p>
                     <p className="mt-2">
                         Her focus on mentoring, operational rigor, and inclusive leadership through
                         initiatives like "Lean In" exemplifies execution excellence with heart.
-                        Sandberg proved that you don&apost have to choose between
+                        Sandberg proved that you don't have to choose between
                         business results and caring about people—the best leaders do both exceptionally well.
                     </p>
                     <div className="bg-white border-l-4 border-gray-800 shadow p-4 mb-6">
@@ -275,9 +275,9 @@ export default function LeadershipBlog() {
                     </p>
                     <p className="mt-2">
                         His visionary approach has redefined entire industries—electric vehicles, reusable rockets, and long-term planetary sustainability goals.
-                        He&aposs undoubtedly a thought leader who pushes the boundaries of what&aposs considered possible.
+                        He's undoubtedly a thought leader who pushes the boundaries of what's considered possible.
                         However, Musk also serves as a cautionary tale about the importance of balanced leadership.
-                        While admired for his ambitious vision, he&aposs often criticized for challenges in people leadership.
+                        While admired for his ambitious vision, he's often criticized for challenges in people leadership.
                         This teaches us that even extraordinary thought leadership needs to be balanced with strong people leadership skills to create sustainable impact.
                     </p>
                     <div className="bg-white border-l-4 border-gray-800 shadow p-4 mb-6">
@@ -397,7 +397,7 @@ export default function LeadershipBlog() {
             </div>
             <h2 id="dayinlife" className="text-3xl font-bold mb-6">A Day in the Life: Leadership in Action</h2>
             <p className="text-lg mb-8">
-                Let me paint a picture of how these principles come together in the daily reality of modern tech leadership. Here&aposs what a typical day might look like for a leader who embodies these qualities:
+                Let me paint a picture of how these principles come together in the daily reality of modern tech leadership. Here's what a typical day might look like for a leader who embodies these qualities:
             </p>
             <ul className="space-y-4 text-base list-disc list-inside mb-8">
                 <li><strong>9:00 AM – Daily Standup:</strong> Instead of micromanaging progress, they focus on reviewing blockers and empowering team members to take ownership of solutions.</li>
@@ -405,18 +405,18 @@ export default function LeadershipBlog() {
                 <li><strong>12:00 PM – 1:1s and Mentoring:</strong> They invest time in coaching direct reports, offering growth-oriented feedback, and sometimes simply listening to understand challenges.</li>
                 <li><strong>2:00 PM – Escalation Handling:</strong> When incidents occur, they own the response, communicate transparently with stakeholders, and protect their team from blame culture.</li>
                 <li><strong>4:00 PM – Stakeholder Alignment:</strong> They ensure product, design, and business functions are all rowing in the same direction toward shared outcomes.</li>
-                <li><strong>6:00 PM – Reflection and Planning:</strong> They end the day by reviewing decisions made, adjusting priorities based on new information, and preparing for tomorrow&aposs challenges.</li>
+                <li><strong>6:00 PM – Reflection and Planning:</strong> They end the day by reviewing decisions made, adjusting priorities based on new information, and preparing for tomorrow's challenges.</li>
             </ul>
             <p className="text-lg mb-12">
-                This rhythm illustrates that leadership isn&apost about commanding from the top—it&aposs about connecting, aligning, and enabling others to do their best work.
+                This rhythm illustrates that leadership isn't about commanding from the top—it's about connecting, aligning, and enabling others to do their best work.
             </p>
 
             {/* Heading 2 */}
             <h2 id="interview" className="text-3xl font-bold mb-6">The Interview Reality: How Companies Assess Leadership Potential</h2>
             <p className="text-lg mb-8">
-                Understanding leadership principles is one thing, but demonstrating them when it matters most—during job interviews—requires a strategic approach. Many companies now recognize that technical skills alone don&apost guarantee success; they&aposre actively seeking candidates who can lead, influence, and drive results regardless of their formal title.
+                Understanding leadership principles is one thing, but demonstrating them when it matters most—during job interviews—requires a strategic approach. Many companies now recognize that technical skills alone don't guarantee success; they're actively seeking candidates who can lead, influence, and drive results regardless of their formal title.
             </p>
-            <p className="text-base mb-4">Here&aposs how to approach leadership-related interview questions using a proven framework:</p>
+            <p className="text-base mb-4">Here's how to approach leadership-related interview questions using a proven framework:</p>
             <ul className="space-y-3 text-base list-disc list-inside mb-8">
                 <li><strong>Relate to personal experience</strong> – Show self-awareness and initiative</li>
                 <li><strong>Explain the situation and context</strong> – Set the stage using the STAR method (Situation, Task, Action, Result)</li>
@@ -447,10 +447,10 @@ export default function LeadershipBlog() {
 
             <h2 id="conclusion" className="text-2xl font-semibold text-black mb-4">The Daily Choice: Making Leadership a Practice</h2>
             <p className="text-black mb-4">
-                As our journey through leadership history and modern applications draws to a close, one truth emerges clearly: leadership isn&apost a role you&aposre assigned—it&aposs a practice you choose to develop daily.
+                As our journey through leadership history and modern applications draws to a close, one truth emerges clearly: leadership isn't a role you're assigned—it's a practice you choose to develop daily.
             </p>
             <p className="text-black mb-4">
-                Whether you&aposre leading a 10-person agile squad, influencing without authority in a cross-functional team, or just starting your career as an individual contributor, the fundamental principles remain consistent:
+                Whether you're leading a 10-person agile squad, influencing without authority in a cross-functional team, or just starting your career as an individual contributor, the fundamental principles remain consistent:
             </p>
             <ul className="list-disc pl-6 text-black space-y-2 mb-4">
                 <li>Take ownership of outcomes, not just tasks</li>
@@ -460,12 +460,12 @@ export default function LeadershipBlog() {
                 <li>Lead by example in both small moments and major challenges</li>
             </ul>
             <p className="text-black mb-4">
-                The most beautiful aspect of leadership is that it&aposs not a skill reserved exclusively for managers or executives. It&aposs a mindset that anyone can adopt and develop.
+                The most beautiful aspect of leadership is that it's not a skill reserved exclusively for managers or executives. It's a mindset that anyone can adopt and develop.
             </p>
 
             <h3 className="text-xl font-semibold text-black mb-3">Your Leadership Journey Starts Now</h3>
             <p className="text-black mb-4">
-                Here&aposs how you can begin building leadership influence immediately, regardless of your current position:
+                Here's how you can begin building leadership influence immediately, regardless of your current position:
             </p>
             <ul className="list-disc pl-6 text-black space-y-2 mb-4">
                 <p>Start with micro-leadership moments:</p>
@@ -473,7 +473,7 @@ export default function LeadershipBlog() {
                 <li>Volunteer to facilitate the next sprint retrospective</li>
                 <li>Offer to mentor a junior teammate</li>
                 <li>Speak up with constructive ideas during team meetings</li>
-                <li>Take ownership when something goes wrong, even if it&aposs not entirely your fault</li>
+                <li>Take ownership when something goes wrong, even if it's not entirely your fault</li>
             </ul>
             <p className="text-black mb-4">
                 These small actions compound over time into genuine influence and impact. This is exactly what recruiters, founders, and exceptional teams are looking for—not just technical competence, but the leadership mindset that drives organizations forward.
@@ -486,7 +486,7 @@ export default function LeadershipBlog() {
             </p>
 
             <p className="text-black text-center mt-8 text-lg font-bold italic">
-                "Leadership isn&apost about the title on your business card—it&aposs about the impact you choose to make every single day. The world needs more leaders who lead with purpose, empathy, and unwavering commitment to elevating others. The question isn&apost whether you&aposre ready to be a leader; it&aposs whether you&aposre ready to start leading."
+                "Leadership isn't about the title on your business card—it's about the impact you choose to make every single day. The world needs more leaders who lead with purpose, empathy, and unwavering commitment to elevating others. The question isn't whether you're ready to be a leader; it's whether you're ready to start leading."
             </p>
 
         </div>

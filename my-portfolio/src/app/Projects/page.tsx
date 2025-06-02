@@ -1,6 +1,7 @@
 // ProjectPage.jsx
 import React from 'react';
 import  Link  from 'next/link';
+// import { ProjectCard } from "../components/projectCard";
 
 const projects = [
   {
@@ -81,5 +82,10 @@ export default function ProjectPage() {
       </div>
       
     </section>
+    // <div className="grid gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3">
+    //   {projects.map((p, i) => (
+    //     <ProjectCard key={i} {...p} />
+    //   ))}
+    // </div>
   );
 }
