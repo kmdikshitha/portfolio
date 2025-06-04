@@ -34,7 +34,7 @@ export default function Home() {
               alt="Dikshitha Karanam"
               width={200}
               height={200}
-              className="w-32 h-32 md:w-48 md:h-48 lg:w-60 lg:h-60 rounded-full shadow-lg object-cover border-4 border-white/20"
+              className="w-40 h-40 md:w-48 md:h-48 lg:w-60 lg:h-60 rounded-full shadow-lg object-cover border-4 border-white/20"
             />
           </div>
 
@@ -75,19 +75,18 @@ export default function Home() {
         <h2 className="text-center text-2xl font-semibold mb-10">In a Nutshell</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto text-center">
           {[
-            { icon: "fa-code", label: "Projects", value: "5" },
-            { icon: "fa-pen-nib", label: "Blogs", value: "3" },
-            { icon: "fa-building", label: "Companies", value: "3" },
-            { icon: "fa-award", label: "Awards", value: "6" }
+            { icon: "fa-code", label: "Projects", value: "5", link:"/Projects" },
+            { icon: "fa-pen-nib", label: "Blogs", value: "3", link:"/Blog" },
+            { icon: "fa-building", label: "Companies", value: "3", link:"/AboutMe"  },
+            { icon: "fa-award", label: "Awards", value: "6", link:"/AboutMe" }
           ].map((item, index) => (
-            <div key={index} className="border border-gray-200 bg-white rounded-xl p-6 shadow hover:shadow-md transition">
+            <Link href={item.link} key={index} className="border border-gray-200 bg-white rounded-xl p-6 shadow hover:shadow-md transition">
               <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#f4e1f8] mx-auto mb-2">
                 <i className={`fas ${item.icon} text-3xl text-[#761180] mb-2`}></i>
               </div>
               <h3 className="text-xl font-bold">{item.value}</h3>
               <p className="text-gray-600">{item.label}</p>
-
-            </div>
+            </Link>
           ))}
         </div>
       </section>
