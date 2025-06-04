@@ -40,16 +40,38 @@ A full-stack, responsive personal portfolio built using **Next.js 14**, designed
 | Particle Background| react-particles                        |
 ---
 
+## SetUp
+
 First, run the development server:
 
 ```bash
 
 git clone https://github.com/kmdikshitha/portfolio.git
 
-cd semicolons-and-stories
+cd my-portfolio
 
 npm install
 
 npm run dev
 
 ```
+---
+
+Build for production
+
+```bash
+
+npm run build
+
+```
+---
+## 📌 Deployment
+This project is deployed on Vercel. To deploy:
+
+Push to a GitHub repo
+
+Connect the repo to Vercel dashboard
+
+Set build command: npm run build
+
+Set output directory: .nextDeployment Steps
