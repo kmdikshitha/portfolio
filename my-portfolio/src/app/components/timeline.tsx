@@ -90,7 +90,7 @@ const AboutTimeline = () => {
         contentArrowStyle={{ borderRight: '7px solid  #761180' }}
         date="2018 – 2021"
         icon={<Award />}
-        iconStyle={{ background: '#1f2937', color: '#fff' }}
+        iconStyle={{ background: '#761180', color: '#fff' }}
       >
         <h3 className="text-xl font-semibold">IEEE Student Chapter – Secretary & Executive Member</h3>
         <p>

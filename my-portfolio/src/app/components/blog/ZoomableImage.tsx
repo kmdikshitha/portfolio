@@ -27,15 +27,15 @@ const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt }) => {
         <div className="fixed inset-0 z-50 backdrop-blur-md bg-black/30 flex items-center justify-center">
           <button
             onClick={() => setZoomed(false)}
-            className="absolute top-6 right-6 text-white bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-2"
+            className="absolute top-25 right-25 text-white bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-2"
           >
             ✕
           </button>
           <Image
             src={src}
             alt={`Zoomed - ${alt}`}
-            width={1000}
-            height={1000}
+            width={600}
+            height={600}
             className="rounded-lg max-h-[90vh] max-w-[90vw] shadow-2xl"
           />
         </div>
