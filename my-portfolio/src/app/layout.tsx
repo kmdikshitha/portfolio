@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// import ParticleBackground from "./components/ParticleBackground";
+import ParticleBackground from "./components/ParticleBackground";
 import Navbar from "./components/Navbar";
+import Head from "./head";
+import Footer from "./components/footer"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Semicolon & Stories",
   description: "every line has a story to tell",
+    icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 export default function RootLayout({
@@ -25,13 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+ <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
-        {/* <ParticleBackground /> */}
-         <main className="pt-24">{children}</main>
+        <Head/>
+        <div className="relative">
+          <ParticleBackground />
+          <main className="pt-18 relative z-10">{children}</main>
+        </div>
+        <Footer/>
       </body>
     </html>
   );
