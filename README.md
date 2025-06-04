@@ -74,4 +74,4 @@ Connect the repo to Vercel dashboard
 
 Set build command: npm run build
 
-Set output directory: .nextDeployment Steps
+Set output directory: .next
