@@ -77,7 +77,7 @@ export default function Home() {
           {[
             { icon: "fa-code", label: "Projects", value: "5", link:"/Projects" },
             { icon: "fa-pen-nib", label: "Blogs", value: "3", link:"/Blog" },
-            { icon: "fa-building", label: "Companies", value: "3", link:"/AboutMe"  },
+            { icon: "fa-building", label: "Companies", value: "2", link:"/AboutMe"  },
             { icon: "fa-award", label: "Awards", value: "6", link:"/AboutMe" }
           ].map((item, index) => (
             <Link href={item.link} key={index} className="border border-gray-200 bg-white rounded-xl p-6 shadow hover:shadow-md transition">

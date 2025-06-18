@@ -48,7 +48,7 @@ const AboutTimeline = () => {
 
     <h1 className="text-4xl font-bold text-gray-600 mb-4">Experience</h1>
     <VerticalTimeline className='mb-8'>
-      <VerticalTimelineElement
+      {/* <VerticalTimelineElement
         contentStyle={{ background: '#761180', color: '#fff' }}
         contentArrowStyle={{ borderRight: '7px solid  #761180' }}
         date="2025 – Present"
@@ -62,7 +62,7 @@ const AboutTimeline = () => {
           <li>Enabled secure school-based sessions through Clever, a single sign-on platform adopted by K–12 institutions across the U.S.</li>
           <li>Acted as a bridge between product and engineering teams, ensuring on-time delivery of core infrastructure.</li>
         </ul>
-      </VerticalTimelineElement>
+      </VerticalTimelineElement> */}
 
       <VerticalTimelineElement
         contentStyle={{ background: '#761180', color: '#fff' }}

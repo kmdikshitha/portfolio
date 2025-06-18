@@ -62,9 +62,9 @@ const About = () => {
       <h1 className="text-4xl font-bold text-gray-600 mb-4" >Awards and Nominations</h1>
       <div className="mb-10 border border-gray-200 rounded-lg p-6 flex flex-col md:flex-row gap-6 bg-white">
         <ul className="list-disc list-inside text-lg text-gray-700 mb-6 space-y-2">
-          <li><strong>Second Runner-Up</strong> – Innoquest, Shoemaker Innovation Center</li>
-          <li><strong>Semifinalist</strong> – Vernon Clapp Idea Competition, Kelley School of Business</li>
-          <li><strong>Semifinalist</strong> – Crossroads Idea Competition, The Mill</li>
+          <li><strong>Second Runner-Up</strong> – 2025 Innoquest, Shoemaker Innovation Center</li>
+          <li><strong>Semifinalist</strong> – 2025 Vernon Clapp Idea Competition, Kelley School of Business</li>
+          <li><strong>Semifinalist</strong> – 2025 Crossroads Idea Competition, The Mill</li>
           <li><strong>Team Spot Award</strong> – Optum, Team Gamma</li>
           <li><strong>Certificate of Achievement</strong> – IEEE Secretary Role</li>
           <li><strong>University Distinction</strong> – B.Tech Thesis published on Network-on-Chip (NoC) Systems</li>
