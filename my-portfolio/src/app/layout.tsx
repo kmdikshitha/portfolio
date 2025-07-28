@@ -5,10 +5,7 @@ import ParticleBackground from "./components/ParticleBackground";
 import Navbar from "./components/Navbar";
 import Head from "./head";
 import Footer from "./components/footer"
-<<<<<<< HEAD
-=======
 import CustomMDXProvider from "./components/blog/Typography";
->>>>>>> 5254f26 (changes in new lap)
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,13 +37,9 @@ export default function RootLayout({
         <Head/>
         <div className="relative">
           <ParticleBackground />
-<<<<<<< HEAD
-          <main className="pt-18 relative z-10">{children}</main>
-=======
           <CustomMDXProvider>
             <main className="pt-18 relative z-10">{children}</main>
           </CustomMDXProvider>
->>>>>>> 5254f26 (changes in new lap)
         </div>
         <Footer/>
       </body>

@@ -12,12 +12,9 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-<<<<<<< HEAD
-=======
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^14.2.30",
->>>>>>> 5254f26 (changes in new lap)
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",
@@ -28,11 +25,8 @@
     "react-simple-typewriter": "^5.0.1",
     "react-tsparticles": "^2.12.2",
     "react-vertical-timeline-component": "^3.5.3",
-<<<<<<< HEAD
-=======
     "remark-slug": "^7.0.1",
     "remark-toc": "^9.0.0",
->>>>>>> 5254f26 (changes in new lap)
     "tailwind-merge": "^3.3.0",
     "tsparticles": "^3.8.1",
     "tsparticles-slim": "^2.12.0"
