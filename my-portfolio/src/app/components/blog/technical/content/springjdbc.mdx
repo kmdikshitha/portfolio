@@ -1,0 +1,322 @@
+# Spring JDBC: Hands-On with JdbcTemplate and SQL Integration
+
+Remember in our previous Spring Boot adventure where we built that awesome REST API? Well, we stored data in memory, which was great for learning but... what happens when your server restarts? Poof! All your data vanishes like morning dew. Not exactly what your boss wants to hear on Monday morning, right?
+
+Today, we're diving into the world of **Spring JDBC** - your gateway to persistent data storage. Think of it as teaching your Spring Boot application how to have a conversation with databases. And trust me, databases are much better listeners than your cat!
+
+## The Foundation - Understanding DataSource Configuration
+
+Imagine you're at a coffee shop. You don't go directly to the coffee machine - you talk to the barista (DataSource) who knows exactly which machine to use, how much coffee to make, and handles all the complexity for you. In Spring, a DataSource is your barista for database connections.
+```code
+// Your database connection blueprint
+@Configuration
+public class DatabaseConfig {
+    
+    @Bean
+    public DataSource dataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/myapp");
+        dataSource.setUsername("developer");
+        dataSource.setPassword("secret");
+        // Connection pool settings
+        dataSource.setMaximumPoolSize(10);
+        return dataSource;
+    }
+}
+```
+**Why Connection Pooling Matters:** Think of it like a taxi service. Instead of manufacturing a new taxi for every ride request, you maintain a fleet of taxis ready to serve customers. Similarly, connection pools maintain ready-to-use database connections.
+
+## The Spring Boot Magic
+
+Here's where Spring Boot shows its superpowers. Add this to your application.properties:
+```code
+spring.datasource.url=jdbc:mysql://localhost:3306/myapp
+spring.datasource.username=developer
+spring.datasource.password=secret
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+```
+
+Spring Boot automatically creates a DataSource bean for you. It's like having a personal assistant who reads your mind!
+
+## Behind the Scenes with JdbcTemplate
+
+If DataSource is your barista, then JdbcTemplate is your multilingual translator who speaks both Java and SQL fluently. Before JdbcTemplate, working with databases was a lot of pain as there was lot of boilerplate code, manual mapping, checked exceptions and risk of leaks
+
+JdbcTemplate is a core utility class provided by Spring’s `spring-jdbc` module. It encapsulates and simplifies low-level JDBC operations like opening a connection, preparing a statement, executing SQL, handling exceptions, and closing resources.
+
+It is the recommended way to interact with relational databases in Spring when you’re not using an ORM like JPA.
+
+Here's how it works behind the scenes:
+
+- 1.  Manages Connection Lifecycle: Internally uses the provided DataSource to get a connection.
+- 2.  Uses `PreparedStatement`: For all SQL operations, JdbcTemplate uses PreparedStatement under the hood. It prevents SQL injection by replacing `?` placeholders with properly escaped values. It also supports batch operations and parameterized queries efficiently.
+- 3.  Handles Exception Translation: Translates raw `SQLException` into meaningful unchecked exceptions from the `org.springframework.dao` hierarchy (like `DataIntegrityViolationException`, `EmptyResultDataAccessException` etc.).
+
+### The Three Pillars of JdbcTemplate: 
+
+- `update():` Your go-to for INSERT, UPDATE, DELETE operations
+- `queryForObject():`  When you expect exactly one result
+- `query():`  When you want a list of results
+
+Think of these as different types of questions you ask a database:
+- `update():` "Please do this for me"
+- `queryForObject():` "Give me that one specific thing"
+- `query():` "Give me all the things that match this criteria"
+```code
+@Service
+public class UserService {
+    
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    
+    // The three musketeers of JdbcTemplate
+    public void createUser(User user) {
+        String sql = "INSERT INTO users (name, email) VALUES (?, ?)";
+        jdbcTemplate.update(sql, user.getName(), user.getEmail());
+    }
+    
+    public User findUserById(Long id) {
+        String sql = "SELECT * FROM users WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, userRowMapper, id);
+    }
+    
+    public List<User> findAllUsers() {
+        String sql = "SELECT * FROM users";
+        return jdbcTemplate.query(sql, userRowMapper);
+    }
+}
+```
+
+## The Art of Transformation - Mapping Rows to POJOs
+
+Remember those database rows that look like spreadsheet cells? We need to transform them into beautiful Java objects. This is where RowMapper comes in.
+
+`RowMapper<T>` is a callback interface used by Spring's JdbcTemplate to map each row of a `ResultSet`to a Java object (POJO).
+
+### How It Works
+When you use `jdbcTemplate.query(...)`, Spring:
+
+- Executes the SQL and gets a `ResultSet`.
+- Iterates through each row.
+- For each row, it calls your provided `RowMapper`.
+- Collects the returned objects into a `List<T>`.
+
+It abstracts the repetitive task of converting database columns to Java fields, reducing manual boilerplate.
+
+You can define a RowMapper in two ways:
+
+1.  Custom class
+```java
+public class UserRowMapper implements RowMapper<User> {
+    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return new User(rs.getLong("id"), rs.getString("name"));
+    }
+}
+```
+2. lambda(inline)
+```java
+RowMapper<User> mapper = (rs, rowNum) ->
+    new User(rs.getLong("id"), rs.getString("name"));
+```
+
+It's like having a factory assembly line where each worker (RowMapper) transforms raw materials into finished products!
+
+## The Great Debate – ResultSetExtractor vs RowMapper
+
+When querying a database with Spring JDBC, you're handed a ResultSet—a raw stream of rows. But you don’t want to deal with SQL internals in every controller, right? Enter: RowMapper and ResultSetExtractor—two strategies to transform that raw data into clean Java objects.
+
+### RowMapper - One Row at a Time
+This is the most popular and straightforward method.
+```java
+public class UserRowMapper implements RowMapper<User> {
+    @Override
+    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return new User(rs.getLong("id"), rs.getString("name"));
+    }
+}
+
+```
+- Think of RowMapper as a loop delegate—Spring loops through each row and calls your mapRow() method.
+- Ideal for flat, row-by-row mapping.
+- Automatically used in methods like query() and queryForObject().
+
+### ResultSetExtractor – Full Control Over the ResultSet
+```java
+public class UserResultSetExtractor implements ResultSetExtractor<List<User>> {
+    @Override
+    public List<User> extractData(ResultSet rs) throws SQLException {
+        List<User> users = new ArrayList<>();
+        while (rs.next()) {
+            users.add(new User(rs.getLong("id"), rs.getString("name")));
+        }
+        return users;
+    }
+}
+```
+- Here, you control the entire ResultSet iteration.
+- Ideal for complex joins, nested structures, or batch grouping (e.g., order with order items).
+- Used with jdbcTemplate.query(sql, resultSetExtractor).
+
+### When to Use Which?
+- **RowMapper:** For simple object mapping (90% of cases)
+- **ResultSetExtractor:** When you need to process the entire ResultSet as a unit (complex aggregations, master-detail relationships)
+
+
+## NamedParameterJdbcTemplate
+
+Look at this SQL nightmare:
+`SELECT * FROM users WHERE age > ? AND city = ? AND status = ? AND department = ?`
+
+Which parameter goes where? It's like trying to solve a puzzle blindfolded! This is where NamedParameterJdbcTemplate saves the day.
+
+NamedParameterJdbcTemplate is an advanced version of JdbcTemplate that supports named parameters in SQL queries instead of using confusing ? placeholders.
+
+Named parameters are:
+- Readable: Your SQL reads like a story
+- Maintainable: Adding/removing parameters doesn't break everything
+- Less Error-Prone: No more "parameter index out of bounds" nightmares
+
+Traditional JdbcTemplate uses positional parameters, 
+` SELECT * FROM users WHERE age > ? AND city = ? `
+
+Wheras with NamedParameterJdbcTemplate, 
+
+- You write SQL with `:placeholders`.
+- Create a `Map<String, Object>` with keys matching the placeholder names.
+- Pass both to query() or update().
+
+```java
+String sql = "SELECT * FROM users WHERE city = :city";
+Map<String, Object> params = Map.of("city", "Chicago");
+namedParameterJdbcTemplate.query(sql, params, rowMapper);
+```
+![Spring JDBC](/blog/thumbnail/springjdbc.png)
+
+## Error Handling - When things go wrong
+
+In production, things do go wrong—networks fail, connections timeout, and sometimes the database just doesn’t cooperate. Spring JDBC helps you handle these failures gracefully by providing a **consistent and descriptive exception hierarchy.**
+
+Spring wraps and translates low-level JDBC exceptions into its own runtime exceptions. This means:
+
+- No need to catch SQLException everywhere.
+- You can write clean, readable error-handling logic.
+
+The Exception Hierarchy:
+
+Spring JDBC translates those cryptic database errors into meaningful exceptions:
+
+- DataAccessException: The parent of all database troubles
+- EmptyResultDataAccessException: "Sorry, no data found"
+- DataIntegrityViolationException: "You broke a database rule"
+- QueryTimeoutException: "Database is thinking too hard"
+
+All of these extend `DataAccessException`, so you can catch them broadly or specifically.
+
+```java
+try {
+    User user = jdbcTemplate.queryForObject(...);
+} catch (EmptyResultDataAccessException e) {
+    return null; // Not an error, just no data
+} catch (DataAccessException e) {
+    throw new CustomServiceException("Something went wrong", e);
+}
+```
+You handle recoverable exceptions (like empty result) and escalate critical ones (like timeouts) appropriately.
+
+## The ACID Test – Transaction Management in Spring JDBC
+
+Imagine you're transferring money between two bank accounts:
+
+- Deduct money from Account A
+- Add money to Account B
+
+If the second step fails, the first must also be undone—you can't let money disappear or multiply! That’s a transaction: a group of operations that must all succeed or all fail. It's governed by the ACID principles:
+
+- Atomicity: All or nothing
+- Consistency: DB remains valid before and after
+- Isolation: No interference from other transactions
+- Durability: Once committed, data stays saved—even after crashes
+
+```java
+@Service
+@Transactional
+public class BankingService {
+   ...
+}
+```
+By placing `@Transactional` at the class or method level, you’re telling Spring:
+
+“Wrap this in a transaction. If anything throws an exception, roll it all back.”
+
+No boilerplate code. No manual rollback. Spring takes care of:
+
+- Starting a transaction
+- Committing if everything passes
+- Rolling back if an unchecked exception is thrown
+
+### How It Works Internally:
+
+- Uses AOP (Aspect-Oriented Programming): Behind the scenes, Spring creates a proxy for the class and intercepts method calls to begin, commit, or rollback transactions.
+- Relies on DataSourceTransactionManager: This is the default transaction manager for plain JDBC. It manages connections and ensures transactional behavior.
+
+## The Hall of Fame (or Shame) of Common Errors
+
+1.  The Null Pointer Nightmare
+```java
+// Wrong way
+User user = jdbcTemplate.queryForObject(sql, userRowMapper, id);
+user.getName(); // NPE if user doesn't exist!
+
+// Right way
+try {
+    User user = jdbcTemplate.queryForObject(sql, userRowMapper, id);
+    return user.getName();
+} catch (EmptyResultDataAccessException e) {
+    return "User not found";
+}
+```
+
+2.  The Connection Leak
+```java
+// Spring handles this automatically, but in raw JDBC:
+// Always close connections, statements, and result sets
+// Spring JDBC does this for you - one less thing to worry about!
+```
+
+3.  The SQL Injection Trap
+```java
+// Never do this!
+String sql = "SELECT * FROM users WHERE name = '" + userName + "'";
+
+// Always use parameters
+String sql = "SELECT * FROM users WHERE name = ?";
+jdbcTemplate.query(sql, userRowMapper, userName);
+```
+
+Solutions That Will Save Your Career
+- Always use parameterized queries
+- Handle `EmptyResultDataAccessException` gracefully
+- Use `@Transactional` for business operations
+- Test your SQL queries separately first
+- Use connection pooling (HikariCP is excellent)
+
+
+Spring JDBC offers unmatched performance and granular control by letting you speak directly to your database—no ORM magic, just pure SQL. It's a fantastic choice when you need full transparency, are dealing with complex native queries, or operate in performance-sensitive environments. However, this power comes at a cost: more boilerplate, manual mapping, and limited portability.
+
+If your team is SQL-savvy and your schema is stable, Spring JDBC is a precise and reliable tool. But for fast iterations, evolving models, or rich object graphs, consider higher-level abstractions like Spring Data JPA.
+
+In short: Spring JDBC is a scalpel—sharp and effective in skilled hands. Use it where precision matters.
+
+## Wrapping Up
+
+You've just learned the fundamentals of Spring JDBC that will serve you well in your corporate journey. You now understand:
+
+How to configure DataSource for database connections:
+
+- The power of JdbcTemplate for SQL operations 
+- Row mapping techniques for object transformation 
+- Named parameters for cleaner, maintainable SQL 
+- Exception handling for robust applications 
+- Transaction management for data consistency
+
+In our next adventure, we'll explore Spring Data JPA - where we'll see how to make database operations even more developer-friendly with minimal SQL. But now you have the foundation to appreciate why JPA is helpful and when you might still need the raw power of JDBC.

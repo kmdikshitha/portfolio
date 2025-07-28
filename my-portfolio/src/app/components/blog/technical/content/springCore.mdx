@@ -1,0 +1,330 @@
+# Spring Core: The Heart of Spring
+
+When we talk about Spring, we often mention annotations like `@Autowired`, `@Component`, and 
+`@Service`. But behind these lies the true power of the Spring ecosystem: 
+Spring Core — the foundation that powers everything from web controllers to security layers.
+
+In this post, we'll break down Spring Core, including:
+- What it is
+- How it implements Inversion of Control (IoC)
+- How the Spring Container manages objects (beans)
+- Real-world usage and best practices
+
+
+## What is Spring Core?
+
+Spring Core is the fundamental module of the Spring Framework. 
+It defines how objects are created, configured, and managed — all without you 
+needing to manually control dependencies. Instead of calling new everywhere, Spring handles 
+the wiring of components for you.At the center of this mechanism are:
+
+- Beans: The objects managed by Spring
+- IoC Container: The engine that manages these beans
+- Dependency Injection (DI): The process of injecting required components
+
+Together, they form the backbone of every Spring application.
+
+
+## Core Concept You Must Understand
+
+### Inversion of Control (IoC)
+Inversion of Control means the control of object creation is reversed — moved from your code 
+into the Spring framework. Rather than instantiating dependencies manually, you let the 
+container inject them when needed.
+
+```code
+Traditional Java:
+public class UserController {
+    private UserService userService = new UserService(); // Tight coupling
+}
+
+With IoC:
+@Controller
+public class UserController {
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService; // Dependency injected by Spring
+    }
+}
+```
+This allows for loose coupling, easier testing, and better modularity.
+
+## How is IoC Implemented?
+
+Now that we understand IoC, the next question is: how does Spring implement it under the hood?
+
+Answer: Spring provides two main containers that manage beans and their dependencies.
+
+### BeanFactory - The basic container
+- Lightweight container
+- Lazily loads beans (only when requested)
+- Best suited for resource-constrained environments
+- Interface: org.springframework.beans.factory.BeanFactory
+
+## ApplicationContext- The enterprise container
+- Superset of BeanFactory
+- Eager initialization (by default)
+- Provides internationalization, event propagation, AOP integration
+- Used in most Spring Boot applications
+
+Real-world use case:
+```code
+ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+NotificationService service = context.getBean(NotificationService.class);
+```
+
+## Bean Lifecycle Management
+
+Once a bean is created, Spring manages its entire lifecycle. Bean Scopes refer to the lifecycle of
+a Bean, which means when the object of a Bean is instantiated, how long it lives, and how many 
+objects are created for that Bean throughout its lifetime. The container manages this entire 
+process
+
+![Spring Core](/blog/thumbnail/BeanLifecycle.png)
+
+### Lifecycle Stages
+
+- **1.  Instantiation** – Bean is created
+- **2. Dependency Injection** – Required dependencies are injected
+- **3. Initialization** – Optional setup logic runs
+- **4. Ready to Use** – Bean is ready
+- **5. Destruction** – Cleanup on shutdown
+
+You can plug into this lifecycle using BeanPostProcessors and init/destroy methods.
+
+## Key Spring Core Components
+
+### Beans
+
+A Spring Bean is an object that is:
+
+- Instantiated
+- Assembled
+- Managed by the Spring IoC container
+
+You can define beans using:
+- XML configuration (legacy)
+- Java configuration (@Bean in @Configuration class)
+- Annotations (@Component, @Service, @Repository, @Controller)
+
+### Bean Scopes
+Defines the lifecycle and visibility of a bean:
+
+- singleton (default) – One instance per container
+- prototype – New instance per request
+- request, session, application – Web-aware scopes
+```code
+@Component
+@Scope("prototype")
+public class PaymentProcessor {
+    // new instance every time it's requested
+}
+```
+
+## Types of Dependency Injection
+Spring supports multiple DI styles to provide flexibility, although some are preferred over others.
+
+### Constructor Injection 
+This is the most robust approach. It ensures that the object is always created with all its 
+required dependencies.
+
+- Promotes immutability
+- Great for unit testing
+
+```code
+@Service
+public class OrderService {
+    private final PaymentService paymentService;
+
+    public OrderService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+}
+```
+
+### Setter Injection
+
+Setter-based injection is useful when a dependency is optional or when property configuration 
+is needed.
+
+```code
+@Service
+public class UserService {
+    private UserRepository userRepository;
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+### Field Injection
+While convenient, field injection makes testing harder and violates principles of encapsulation.
+
+```code
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+}
+```
+
+## Spring Configuration Styles
+
+Spring provides multiple styles to configure your beans and dependencies. 
+Choosing the right one depends on your project needs and preferences.
+
+## Java-based Configuration
+
+This is the preferred approach in most modern Spring projects. 
+It allows you to define beans programmatically.
+
+```code
+@Configuration
+@ComponentScan("com.myapp")
+public class AppConfig {
+    @Bean
+    public UserService userService() {
+        return new UserService(userRepository());
+    }
+
+    @Bean
+    public UserRepository userRepository() {
+        return new JdbcUserRepository();
+    }
+}
+```
+
+### Annotation-based Configuration
+Here, Spring auto-detects and wires beans using class-level annotations.
+
+- Works well with Spring Boot
+- Reduces boilerplate configuration
+
+```code
+@Component
+public class UserRepository {}
+
+@Service
+public class UserService {
+    private final UserRepository repo;
+
+    public UserService(UserRepository repo) {
+        this.repo = repo;
+    }
+}
+```
+
+Now lets move on to best practices and common errors to avoide while configuring your beans.
+
+## Best Practices
+
+- Prefer constructor injection
+- Use specific annotations instaed of using @component for everything(@Service, @Repository, etc.)
+- Use camelCase bean naming
+- Use @Lazy for heavy components
+
+```code 
+@Component
+@Lazy
+public class ExpensiveService {}
+```
+
+## Common Spring Pitfalls and Their Solutions
+
+## Circular Dependencies
+
+**Problem:** Two or more beans depend on each other directly, causing the IoC container to fail during startup.
+```code
+//Problematic code
+@Component
+public class A {
+    @Autowired B b;
+}
+
+@Component
+public class B {
+    @Autowired A a;
+}
+
+```
+**Solution:** Use constructor injection with @Lazy or redesign to remove tight coupling.
+
+```code
+//Fix using @Lazy to break the cycle
+@Component
+public class A {
+    private final B b;
+    public A(@Lazy B b) { this.b = b; }
+}
+```
+
+## Overusing Field Injection
+- **Problem:** Field injection hides dependencies and makes testing difficult.
+- **Solution:** Use constructor injection for better testability and immutability.
+
+Example code:
+```code
+// Field injection (not recommended)
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+}
+// Constructor injection (recommended)
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+## Misunderstanding Bean Scopes
+- **Problem:** Using `@Prototype` when expecting singleton behavior, leading to state inconsistency or memory leaks.
+- **Solution:** Use @Scope("singleton") (default) for shared state, or explicitly manage prototype beans.
+
+## Mixing Configuration Styles
+
+- **Problem:** Combining XML, Java config, and annotations leads to confusion and maintenance overhead.
+- **Solution:** Stick to a single style, preferably Java-based configuration with annotations.
+
+```java
+//legacy XML config
+<bean id="userService" class="com.example.UserService" />
+
+//Mixing Java and XML
+@Configuration
+public class MixedConfig {
+    @Bean
+    public EmailService emailService() {
+        return new EmailService();
+    }
+}
+
+//Pure Java + Annotations (modern Spring)
+@Configuration
+@ComponentScan("com.example")
+public class AppConfig {
+    @Bean
+    public EmailService emailService() {
+        return new EmailService();
+    }
+}
+```
+
+## Wrapping up
+
+Spring Core might seem like plumbing — but it’s actually the foundation of everything else. 
+Once you understand how beans, containers, and DI work, the rest of the Spring ecosystem 
+(MVC, Security, Data) becomes much easier to grasp.
+
+In the next post, we’ll explore how Spring MVC leverages this foundation to create 
+RESTful APIs and handle web requests.
+
+
+
+

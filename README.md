@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📝 Semicolons & Stories
 
 **"Every line has a story to tell."**  
@@ -75,3 +76,82 @@ Connect the repo to Vercel dashboard
 Set build command: npm run build
 
 Set output directory: .next
+=======
+# 📝 Semicolons & Stories
+
+**"Every line has a story to tell."**  
+A full-stack, responsive personal portfolio built using **Next.js 14**, designed to showcase projects, blogs, achievements, and career trajectory in a thoughtful, developer-centric narrative.
+
+![alt text](image-2.png)
+
+---
+
+## 🚀 Live Site
+
+🔗 [https://semicolon-stories.vercel.app/](https://semicolon-stories.vercel.app/)
+
+---
+
+## ✨ Features
+
+- 🌐 **Landing Page with Typewriter** showcasing key roles (SDE, TPM, FSD)
+- 🔍 **Projects Dashboard** with tech stack tags and repo links
+- 📝 **Blog Section** with long-form content support (HTML/MDX-ready)
+- 🧭 **Navigation Bar** with mobile hamburger menu
+- 📊 **"In a Nutshell" Highlights** — Achievements, Projects, Blogs, Awards
+- 🧠 **Ikigai Section** to reflect personal philosophy
+- 📩 **Contact Me Page** for networking and collaborations
+- 🦄 **Responsive & Accessible** (mobile-optimized, semantic HTML)
+
+---
+
+## 🛠 Tech Stack
+
+| Category       | Tools                                      |
+|----------------|--------------------------------------------|
+| Framework      | [Next.js 14](https://nextjs.org/)          |
+| Styling        | Tailwind CSS                   |
+| Icons          | FontAwesome, React-Icons                   |
+| Fonts          | Geist Sans, Geist Mono                     |
+| Hosting        | Vercel                                      |
+| Forms          | Formspree     |
+| Image Handling | Next.js `<Image />`                        |
+| Particle Background| react-particles                        |
+---
+
+## SetUp
+
+First, run the development server:
+
+```bash
+
+git clone https://github.com/kmdikshitha/portfolio.git
+
+cd my-portfolio
+
+npm install
+
+npm run dev
+
+```
+---
+
+Build for production
+
+```bash
+
+npm run build
+
+```
+---
+## 📌 Deployment
+This project is deployed on Vercel. To deploy:
+
+Push to a GitHub repo
+
+Connect the repo to Vercel dashboard
+
+Set build command: npm run build
+
+Set output directory: .next
+>>>>>>> 5254f26 (changes in new lap)

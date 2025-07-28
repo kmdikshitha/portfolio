@@ -7,7 +7,7 @@ import ZoomableImage from '../../ZoomableImage';
 
 const SystemArchitectureBlog = () => {
   return (
-    <>
+    <div className="max-w-3xl mx-auto px-3 py-3 text-gray-800 bg-white/90 backdrop-blur-md rounded-xl shadow-xl text-gray-800">
       {/* section 1 */}
       <div className="max-w-3xl mx-auto px-3 py-3 text-gray-800">
 
@@ -536,7 +536,7 @@ const SystemArchitectureBlog = () => {
         </div>
       </section>
 
-    </>
+    </div>
   )
 };
 

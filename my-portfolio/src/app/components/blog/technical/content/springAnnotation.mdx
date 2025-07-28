@@ -1,0 +1,303 @@
+# Bonus: Must Know Spring Annotations
+
+Before diving into different modules of Spring. Let us first understand some important spring 
+annotations and why are they used.
+
+## Core Stereotype Annotations
+
+1. ### **1.  @Component**
+
+**Definition:** `@Component` is a generic stereotype for any Spring-managed component.
+ It marks a class as a Spring-managed bean.
+
+**Spring Behavior:** During component scanning, Spring identifies classes annotated with 
+`@Component` and automatically registers them as beans in the ApplicationContext.
+
+**When to Use:**
+- For general-purpose classes that need to be managed by Spring.
+- When the class does not belong to any specific application tier (like service or controller).
+
+2. ### **2. @Service**
+
+**Definition:** `@Service` is special cases of `@Component`. They are technically the same, 
+but we use them for the different purposes. Marks a class as a service layer component.
+
+**Spring Behavior:** Functions exactly like `@Component`, but helps in semantically organizing 
+service-layer classes. Spring may use this annotation for applying business-related AOP.
+
+**When to Use:**
+- For classes containing business operations or logic orchestration.
+- For classes that orchestrate calls to repositories
+
+### **3. @Repository**
+
+**Definition:** `@Repository` marks a class as part of the persistence layer. It is also a 
+specialization of `@Component` annotation which is used to indicate 
+that the class provides the mechanism for storage, retrieval, update, delete and search 
+operation on objects.
+
+**Spring Behavior:** Beyond being a `@Component`, it adds automatic exception translation 
+from database-specific exceptions to Spring’s unified `DataAccessException`.
+
+**When to Use:**
+- For classes interacting with the database.
+- For DAOs and JPA repositories.
+- When implementing database operations
+
+### **4. @Controller**
+
+**Definition:** `@Controller` defines a class as a Spring MVC controller that returns views. 
+It is also specialization of `@Component` for more specific use cases (in the 
+persistence, service, and presentation layers, respectively). Marks a class as a web controller.
+
+**Spring Behavior:** Spring scans for this annotation to handle web requests and map them to view templates.
+
+**When to Use:**
+- When building traditional MVC applications that return HTML.
+- For controllers that handle user-facing routes.
+- When handling HTTP requests and responses
+- For classes that define request mappings
+
+### **5. @RestController**
+
+**Definition:** Combines `@Controller` and `@ResponseBody`. It signifies that the controller returns domain objects (typically JSON).
+
+**Spring Behavior:** All methods in the class automatically serialize return values to JSON/XML.
+
+**When to Use:**
+- For building RESTful APIs.
+- When returning data, not views.
+
+---
+
+## Configuration Annotations
+
+### **6. @Configuration**
+
+**Definition:** Indicates that the class provides bean definitions(one or more) for the Spring container.
+
+**Spring Behavior:** Spring treats this as a configuration source and processes `@Bean` methods for inclusion in the `ApplicationContext`.
+
+**When to Use:**
+- For Java-based configuration as an alternative to XML.
+- To group related bean definitions together.
+
+### **7. @Bean**
+
+**Definition:**  Indicates that a method produces a bean to be managed by the Spring container.
+
+**Spring Behavior:** Spring invokes the method and registers the returned object as a bean within the container.
+
+**When to Use:**
+- To register third-party or manually configured beans.
+- When fine-tuned control over bean instantiation is required.
+
+### **8. @ComponentScan**
+
+**Definition:** Instructs Spring on which packages to scan for annotated components.
+
+**Spring Behavior:** During application startup, Spring looks into the specified packages for `@Component`, `@Service`, `@Repository`, and `@Controller` classes.
+
+**When to Use:**
+- When customizing base package scanning.
+- When your components are outside the default package.
+
+---
+
+## Dependency Injection Annotations
+
+### **9. @Autowired**
+
+**Definition:** The `@Autowired` annotation in Spring marks a constructor, setter method,
+ property, or configuration method to be autowired. This means that Spring will automatically 
+inject the required dependencies (beans) at runtime using its Dependency Injection mechanism.
+
+**Spring Behavior:** Spring resolves and injects the appropriate bean automatically during context initialization.
+
+**When to Use:**
+- To inject dependencies automatically without manual wiring.
+- On constructors (recommended), setters, or fields.
+
+### **10. @Qualifier**
+
+**Definition:** It is used in conjunction with `@Autowired` to specify which exact bean should be 
+injected when there are multiple beans of the same type in the application context.
+
+**Spring Behavior:** Directs Spring to inject the specific bean that matches the given qualifier name.
+
+**When to Use:**
+- With `@Autowired` to specify exactly which bean to inject.
+- When multiple beans implement the same interface.
+
+### **11. @Primary**
+
+**Definition:** Indicates that a bean should be given 
+preference when multiple candidates are qualified to autowire.
+
+**Spring Behavior:** Spring will inject the `@Primary` bean by default unless `@Qualifier` overrides it.
+
+**When to Use:**
+- When a default implementation should be preferred.
+- To reduce the need for explicit qualifiers.
+
+### **12. @Value**
+
+**Definition:** Injects values from property files, environment variables, or SpEL expressions.
+
+**Spring Behavior:** Resolves and substitutes the value at runtime into the target field or method.
+
+**When to Use:**
+- For configuration values like URLs, credentials, flags, etc.
+- To support externalized configuration.
+
+---
+
+## Web & Request Mapping Annotations
+
+### **13. @RequestMapping**
+
+**Definition:** Maps HTTP requests to handler methods or controller classes.
+
+**Spring Behavior:** Spring registers the method to handle specified HTTP paths and request types.
+
+**When to Use:**
+- For flexible request mappings with fine control over methods, headers, and params.
+- At both class and method level.
+
+### **14. @GetMapping, @PostMapping, etc.**
+
+**Definition:** Specialized variants of `@RequestMapping` for common HTTP methods.
+
+**Spring Behavior:** Registers the method with Spring MVC to handle a specific HTTP verb.
+
+**When to Use:**
+- For cleaner, declarative mappings of HTTP GET, POST, PUT, DELETE methods.
+
+### **15. @PathVariable**
+
+**Definition:** Binds a URI template variable to a method parameter.
+
+**Spring Behavior:** Spring extracts the value from the request URI and maps it to the annotated parameter.
+
+**When to Use:**
+- When extracting dynamic parts of the URI (e.g., `/users/{id}`).
+
+### **16. @RequestParam**
+
+**Definition:** Binds a query parameter to a method parameter.
+
+**Spring Behavior:** Spring retrieves query string values and injects them into method parameters.
+
+**When to Use:**
+- For form submissions or URL query parameters.
+
+---
+
+### **17. @RequestBody**
+
+**Definition:** Maps the body of the HTTP request to a method parameter.
+
+**Spring Behavior:** Automatically deserializes JSON/XML request bodies into Java objects.
+
+**When to Use:**
+- For POST/PUT operations that require complex request bodies.
+
+### **18. @ResponseBody**
+
+**Definition:** Indicates that a method’s return value should be written directly to the HTTP response body.
+
+**Spring Behavior:** Converts return value into JSON/XML using HttpMessageConverters.
+
+**When to Use:**
+- When returning data instead of a view name.
+- Automatically included in `@RestController`.
+
+---
+
+## Transaction & Persistence Annotations
+
+### **19. @Transactional**
+
+**Definition:** Defines transaction boundaries for methods or classes.
+
+**Spring Behavior:** Manages transactions automatically—committing on success, rolling back on failure.
+
+**When to Use:**
+- For services or repositories involving multiple database operations that must succeed or fail atomically.
+
+### **20. @Query**
+
+**Definition:** Allows defining custom queries in Spring Data repositories.
+
+**Spring Behavior:** Parses and executes the provided JPQL or native SQL query.
+
+**When to Use:**
+- When derived query methods aren’t sufficient or flexible.
+
+---
+
+## Validation Annotations
+
+### **21. @Valid**
+
+**Definition:** Triggers bean validation on method parameters annotated.
+
+**Spring Behavior:** Integrates with JSR-380 validation (Hibernate Validator) to validate request inputs automatically.
+
+**When to Use:**
+- For validating request bodies or form inputs.
+
+### **22. @NotNull, @NotBlank, @NotEmpty**
+
+**Definition:** Enforces constraints on bean fields.
+
+**Spring Behavior:** Participates in validation mechanisms and throws errors if constraints are violated.
+
+**When to Use:**
+- For model validation in forms, REST APIs, or data transfer objects.
+
+---
+
+## Profile & Environment Annotations
+
+### **23. @Profile**
+
+**Definition:** Restricts bean registration based on active environment profiles.
+
+**Spring Behavior:** Spring will register the bean only if the specified profile is active.
+
+**When to Use:**
+- For dev/test/prod environment-specific configurations.
+
+### **24. @Conditional**
+
+**Definition:** Indicates that a component is only eligible for registration when all specified conditions match.
+
+**Spring Behavior:** Evaluates a `Condition` implementation to decide if the bean should be included.
+
+**When to Use:**
+- When you need conditional configuration beyond profile/environment logic.
+
+---
+
+## Testing Annotations
+
+### **25. @SpringBootTest**
+
+**Definition:** Boots the full Spring context for integration testing.
+
+**Spring Behavior:** Loads the application context and all its beans for end-to-end tests.
+
+**When to Use:**
+- For integration tests that require real components.
+
+### **26. @MockBean**
+
+**Definition:** Replaces a real bean with a Mockito mock in the Spring context. 
+Adds mock objects to the Spring application context
+
+**Spring Behavior:** Overrides any existing bean of the same type with a mock.
+
+**When to Use:**
+- For isolating units during integration testing by mocking dependencies.
+

@@ -1,0 +1,147 @@
+# Introduction to Spring Framework
+
+Spring was the first backend framework I used at my first company.
+And like many developers, I was confused by annotations like `@RestController`, `@Autowired`, 
+or `@Entity`.  
+
+I’d run into mysterious errors like:
+
+- `DispatcherServlet not found`
+- `No EntityManagerFactory configured`
+- `BeanNotFoundException`
+
+Those moments sparked my curiosity — and pushed me to understand how Spring works, not just use it.
+This post kicks off a **10-part series** unpacking the Spring Framework from the ground up.
+
+In my previous post, I broke down REST APIs — the foundational architecture pattern used by modern systems to bridge the UI layer with backend logic.
+But here’s the real question:  
+**How are REST APIs implemented in real-world applications?**
+
+Can we write them in raw code — say, Java, Python, or even HTML?
+
+Technically, yes.  
+But when it comes to enterprise-grade applications, we need robust frameworks that abstract complexity, 
+enforce structure, and scale with ease.
+
+And that’s where **Spring (Java)** and **Flask (Python)** come in.
+
+
+## Why It Matters?
+
+Let’s answer a simple but important question:  
+**Why is Spring the industry-standard framework for backend development in Java?**
+
+Here are 5 reasons why it dominates in enterprise architecture:
+
+1. ### 1.  Modularity  
+   Spring is broken down into independent modules: Core, MVC, Data, Security, AOP, Boot, etc. You use what you need.
+
+2. ### 2.  Loose Coupling via Dependency Injection  
+   It lets you build highly testable, loosely coupled systems using DI and IoC (more below).
+
+3. ### 3.  Built-in Support for REST & MVC
+   It makes building REST APIs and serving HTML pages easy using annotations like `@Controller`, `@RestController`, `@RequestMapping`.
+
+4. ### 4.  Seamless Integration
+   It integrates well with databases (via JDBC or JPA), security, cloud platforms, and messaging systems like Kafka.
+
+5. ### 5.  Scalable Microservice Architecture  
+   Spring Boot + Spring Cloud = plug-and-play microservices.  
+   Easier to scale horizontally, manage configs, and monitor services.
+
+## Two Pillars of Spring: DI and IoC
+
+These two concepts power everything behind the scenes in Spring:
+
+1. ### 1.  Dependency Injection (DI)
+
+Instead of writing:
+   ```code
+   UserService service = new UserService();
+   ```
+
+Spring does:
+    ```code
+    @Autowired
+    private UserService service;
+    ```
+
+Spring injects dependencies for you, reducing tight coupling and improving testability.
+
+2. ### 2.  Inversion of Control(IoC)
+
+With IoC, the control of object creation is flipped. You don’t create objects manually — Spring does it based on your configuration.
+It’s powered by the IoC Container, also known as the ApplicationContext.
+Think of Spring as the conductor of an orchestra — managing which services are wired together, when, and how.
+
+
+## How Spring Implements REST
+
+REST isn’t just about defining URLs. It’s a mindset: **statelessness, uniform interface, 
+layered architecture**.Spring Framework doesn't just support REST principles—it makes 
+implementing them feel natural and intuitive. Here's how Spring takes care of the heavy lifting 
+for you:
+
+1. **1.  HTTP Methods Made Simple:** 
+Remember those core REST operations? Spring gives you dedicated annotations that make your intent 
+crystal clear. Instead of wrestling with generic request mappings, you can use @GetMapping for 
+retrieving data, `@PostMapping` for creating resources, `@PutMapping` for updates, and
+`@DeleteMapping` for removals. Each annotation does exactly what its name suggests, 
+making your code self-documenting.
+
+2. **2.  Statelessness by Design:** 
+One of REST's core principles is that each request should contain all the information 
+needed to process it. Spring embraces this by default—there's no session state management 
+unless you explicitly ask for it. Your controllers naturally follow the stateless pattern, 
+making your APIs more scalable and easier to reason about.
+
+3. **3.  Domain Objects as Resources:** 
+In REST, everything is a resource, and Spring makes this mapping seamless. Your domain 
+entities—like User, Product, or Order—can be directly mapped to REST endpoints. 
+Spring's smart conventions mean that a UserController naturally handles `/users` endpoints, 
+creating an intuitive relationship between your code structure and your API design.
+
+4. **4.  Automatic Content Handling:** 
+Here's where Spring really shines. With just `@ResponseBody` (or @RestController), Spring 
+automatically converts your Java objects to JSON or XML based on what the client requests. 
+No manual serialization, no complex configuration—just clean, readable code that works with any 
+client expecting standard web formats.
+
+5. **5.  HATEOAS Support When You Need It:** 
+For truly RESTful APIs that include hypermedia links, Spring provides the HATEOAS module. 
+While not every API needs this level of REST compliance, Spring makes it available when you 
+want to build APIs that guide clients through available actions and related resources.
+
+6. **6.  Content Negotiation Without the Complexity:** 
+Your API clients might want JSON, XML, or other formats. Spring's built-in content negotiation 
+handles this automatically based on HTTP headers like Accept and Content-Type. You write your 
+controller once, and Spring adapts the response format to match what each client expects.
+
+Example:
+
+```code
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable Long id) {
+        return userService.findById(id);
+    }
+}
+```
+---
+## Modules We'll Cover in This Series
+
+Over the next 9 posts, we’ll break Spring into developer-digestible modules:
+1. **Spring Core** – Beans, IoC, and ApplicationContext
+2. **Spring MVC** – Controllers, Views, REST APIs
+3. **Spring Boot** – Auto-configuration and embedded servers
+4. **Spring JDBC** – Raw SQL access
+5. **Spring JPA** – ORM and entity management
+6. **Spring Security** – Authentication and authorization
+7. **AOP & Transactions** – Cross-cutting concerns
+8. **Messaging & Scheduling** – Kafka, RabbitMQ, cron jobs
+9. **Testing in Spring – Unit** and integration testing with mocks
+
+![Spring Architecture](/blog/thumbnail/springIntro.png)
+

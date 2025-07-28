@@ -5,7 +5,7 @@ import ZoomableImage from '../../ZoomableImage';
 
 const ReactBlog = () => {
     return (
-        <>
+        <div className='max-w-3xl mx-auto px-3 py-3 text-gray-800 bg-white/90 backdrop-blur-md rounded-xl shadow-xl'>
             {/* Section 1 */}
             <div className="max-w-3xl mx-auto px-3 py-3 text-gray-800">
 
@@ -277,7 +277,7 @@ public ResponseEntity<Cart> addToCart(@RequestBody Item item) {
                 </p>
             </div>
 
-        </>
+        </div>
     )
 };
 

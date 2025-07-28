@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import "tailwindcss";
 @tailwind base;
 @tailwind components;
@@ -13,3 +14,45 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+=======
+/* @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #E6DBE9;
+  --foreground: #761180;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+} */
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gradient-start: #D6C9D9;   /* Darker Lavender Pink */
+  --gradient-mid1: #BBAAD9;    /* Deeper Muted Violet */
+  --gradient-mid2: #9A94E0;    /* Muted Deeper Indigo */
+  --gradient-end: #84B3E0;     /* Subdued Soft Blue */
+  --foreground: #5A0C57;       /* Darker Deep Violet */
+}
+
+
+body {
+  background: linear-gradient(135deg, 
+    var(--gradient-start), 
+    var(--gradient-mid1), 
+    var(--gradient-mid2), 
+    var(--gradient-end)
+  );
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  background-attachment: fixed; /* keeps particles aligned */
+}
+>>>>>>> 5254f26 (changes in new lap)

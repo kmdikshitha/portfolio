@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function LeadershipBlog() {
     return (
-        <div className="max-w-3xl mx-auto px-4 py-10 text-gray-800">
+        <div className="max-w-3xl mx-auto px-4 py-10 bg-white/90 backdrop-blur-md rounded-xl shadow-xl text-gray-800">
 
             {/* Main Heading */}
             <h1 className="text-4xl font-bold mb-6 text-gray-900">

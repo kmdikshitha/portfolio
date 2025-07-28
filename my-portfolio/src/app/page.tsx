@@ -76,7 +76,7 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto text-center">
           {[
             { icon: "fa-code", label: "Projects", value: "5", link:"/Projects" },
-            { icon: "fa-pen-nib", label: "Blogs", value: "3", link:"/Blog" },
+            { icon: "fa-pen-nib", label: "Blogs", value: "14", link:"/Blog" },
             { icon: "fa-building", label: "Companies", value: "2", link:"/AboutMe"  },
             { icon: "fa-award", label: "Awards", value: "6", link:"/AboutMe" }
           ].map((item, index) => (
