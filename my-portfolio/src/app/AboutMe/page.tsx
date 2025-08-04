@@ -23,7 +23,7 @@ const About = () => {
           {[
             "SQL", "Java", "Spring Framework", "Python", "Flask",
             "RESTful API", "Jenkins", "Docker", "Git", "GitHub",
-            "Postman", "JIRA", "Rally", "Agile"
+            "Postman"
           ].map((skill) => (
             <div key={skill} className={skillBoxClasses}>{skill}</div>
           ))}
@@ -37,7 +37,7 @@ const About = () => {
           {[
             "MVP Development", "Customer Development",
             "Wireframing (Balsamiq, Figma)",
-            "Risk Analysis", "KPI Analysis"
+            "Risk Analysis", "KPI Analysis","JIRA", "Rally", "Agile"
           ].map((skill) => (
             <div key={skill} className={skillBoxClasses}>{skill}</div>
           ))}

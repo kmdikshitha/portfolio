@@ -67,6 +67,26 @@ const AboutTimeline = () => {
       <VerticalTimelineElement
         contentStyle={{ background: '#761180', color: '#fff' }}
         contentArrowStyle={{ borderRight: '7px solid  #761180' }}
+        date="June 2025- Aug 2025"
+        icon={<Briefcase />}
+        iconStyle={{ background: '#761180', color: '#fff' }}
+      >
+        <h3 className="text-xl font-semibold">The Mill - Startup Founder cohort</h3>
+        <p>
+          Bloomington's hub for coworking and startups.
+        </p>
+        <ul className="list-disc list-inside text-lg #fff mb-6 space-y-2">
+          <li>Acquired end-to-end product development experience, including opportunity identification, problem validation, solution ideation, MVP prototyping, and go-to-market strategy formulation.</li>
+          <li>Contributed to the development of Credify, a reusable credibility verification platform. Led backend engineering efforts and actively participated in product strategy discussions, user flow mapping, and competitive differentiation.</li>
+          <li>Designed and implemented the initial backend architecture using Spring Boot, including development of scalable, stateless RESTful APIs to support core product functionality.</li>
+          <li>Participated in the final Demo Day pitch along side product lead, presenting the product vision, user problem-solution fit, and backend implementation and business potential to startup mentors, VCs, and local ecosystem stakeholders.</li>
+        </ul>
+      </VerticalTimelineElement>
+
+
+      <VerticalTimelineElement
+        contentStyle={{ background: '#761180', color: '#fff' }}
+        contentArrowStyle={{ borderRight: '7px solid  #761180' }}
         date="2022 – 2024"
         icon={<Briefcase />}
         iconStyle={{ background: '#761180', color: '#fff' }}
