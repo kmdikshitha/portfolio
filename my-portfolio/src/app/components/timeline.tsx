@@ -48,21 +48,54 @@ const AboutTimeline = () => {
 
     <h1 className="text-4xl font-bold text-gray-600 mb-4">Experience</h1>
     <VerticalTimeline className='mb-8'>
-      {/* <VerticalTimelineElement
+
+      <VerticalTimelineElement
         contentStyle={{ background: '#761180', color: '#fff' }}
         contentArrowStyle={{ borderRight: '7px solid  #761180' }}
-        date="2025 – Present"
+        date="Aug 2025 – Present"
         icon={<Briefcase />}
         iconStyle={{ background: '#761180', color: '#fff' }}
       >
-        <h3 className="text-xl font-semibold">Learn2Switch — Backend Developer / TPM</h3>
+        <h3 className="text-xl font-semibold">Teaching Assistant</h3>
+        <ul className="list-disc list-inside text-lg #fff mb-6 space-y-2">
+          <li>Guiding students in software engineering concepts including configuration management, CI/CD, containerization, virtualization, application security, and data networking.</li>
+          <li>Supporting course delivery through project-based learning, grading, and feedback.</li>
+          <li>Assisting students in software design, testing, documentation, and distributed deployment.</li>
+        </ul>
+      </VerticalTimelineElement>
+
+      <VerticalTimelineElement
+        contentStyle={{ background: '#761180', color: '#fff' }}
+        contentArrowStyle={{ borderRight: '7px solid  #761180' }}
+        date="Aug 2025 – Present"
+        icon={<Briefcase />}
+        iconStyle={{ background: '#761180', color: '#fff' }}
+      >
+        <h3 className="text-xl font-semibold">Shoemaker Innovation Center - Technical Specialist</h3>
+        <p className='mb-2'>Student-focused source for creative & effective approaches to supporting technology innovation & entrepreneurship.</p>
+        <ul className="list-disc list-inside text-lg #fff mb-6 space-y-2">
+          <li>Serving as a key liaison between startup founders and technical resources, delivering tailored software solutions to evolving project needs.</li>
+          <li>Evaluating system requirements and recommending optimal frameworks, programming stacks, and deployment architectures.</li>
+          <li>Advising on scalability, security, and integration strategies to enable robust, production-ready applications.</li>
+        </ul>
+      </VerticalTimelineElement>
+
+
+      <VerticalTimelineElement
+        contentStyle={{ background: '#761180', color: '#fff' }}
+        contentArrowStyle={{ borderRight: '7px solid  #761180' }}
+        date="Aug 2025 – Present"
+        icon={<Briefcase />}
+        iconStyle={{ background: '#761180', color: '#fff' }}
+      >
+        <h3 className="text-xl font-semibold">Learn2Switch — Full Stack Product Manager</h3>
         <p className='mb-2'>An EdTech platform delivering a serious game to teach employability and emotional regulation to high schoolers (grades 9–12).</p>
         <ul className="list-disc list-inside text-lg #fff mb-6 space-y-2">
-          <li>Designed architectural diagrams, authored sprint specifications, and facilitated system integration between Unity 3D and BigQuery.</li>
-          <li>Enabled secure school-based sessions through Clever, a single sign-on platform adopted by K–12 institutions across the U.S.</li>
-          <li>Acted as a bridge between product and engineering teams, ensuring on-time delivery of core infrastructure.</li>
+          <li>Collaborating with school districts to understand requirements and enable secure, role-based access for students, teachers, parents, and advisors using Clever API.</li>
+          <li>Designing and implementing full-stack dashboards from scratch, including backend APIs, database integration, and frontend architecture using React and Next.js.</li>
+          <li>Driving product decisions by analyzing data visibility, prioritizing features, and ensuring actionable insights for end-users.</li>
         </ul>
-      </VerticalTimelineElement> */}
+      </VerticalTimelineElement>
 
       <VerticalTimelineElement
         contentStyle={{ background: '#761180', color: '#fff' }}
@@ -76,10 +109,12 @@ const AboutTimeline = () => {
           Bloomington's hub for coworking and startups.
         </p>
         <ul className="list-disc list-inside text-lg #fff mb-6 space-y-2">
-          <li>Acquired end-to-end product development experience, including opportunity identification, problem validation, solution ideation, MVP prototyping, and go-to-market strategy formulation.</li>
-          <li>Contributed to the development of Credify, a reusable credibility verification platform. Led backend engineering efforts and actively participated in product strategy discussions, user flow mapping, and competitive differentiation.</li>
-          <li>Designed and implemented the initial backend architecture using Spring Boot, including development of scalable, stateless RESTful APIs to support core product functionality.</li>
-          <li>Participated in the final Demo Day pitch along side product lead, presenting the product vision, user problem-solution fit, and backend implementation and business potential to startup mentors, VCs, and local ecosystem stakeholders.</li>
+          <li>Designed and implemented the initial backend architecture using Spring Boot, building scalable, stateless RESTful APIs for identity verification (employment, address, identity).</li>
+          <li>Set up and structured the Git repository, establishing modular organization, coding standards, and version control best practices.</li>
+          <li>Contributed to the development of Credify, a blockchain-based credibility verification platform, leading backend execution while collaborating on product strategy and user flows.</li>
+          <li>Conducted customer discovery and defined the Ideal Customer Profile (ICP) to validate problem-solution fit.</li>
+          <li>Supported MVP prototyping using tools like Lovable and Cursor, testing workflows and validating front-end interactions.</li>
+          <li>Co-presented at Demo Day, showcasing backend implementation, product vision, and business potential to mentors, VCs, and ecosystem stakeholders.</li>
         </ul>
       </VerticalTimelineElement>
 

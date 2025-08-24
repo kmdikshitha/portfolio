@@ -75,8 +75,8 @@ export default function Home() {
         <h2 className="text-center text-2xl font-semibold mb-10">In a Nutshell</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto text-center">
           {[
-            { icon: "fa-building", label: "Companies", value: "2", link:"/AboutMe"  },
-            { icon: "fa-id-badge", label: "Leadership & Roles", value: "3", link:"/AboutMe" },
+            { icon: "fa-building", label: "Companies", value: "4", link:"/AboutMe"  },
+            { icon: "fa-id-badge", label: "Leadership & Roles", value: "7", link:"/AboutMe" },
             { icon: "fa-code", label: "Projects", value: "5", link:"/Projects" },
             { icon: "fa-pen-nib", label: "Blogs", value: "14", link:"/Blog" },
             { icon: "fa-award", label: "Awards", value: "6", link:"/AboutMe" }
