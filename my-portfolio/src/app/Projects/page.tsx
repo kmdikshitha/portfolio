@@ -49,9 +49,9 @@ const projects = [
 
 export default function ProjectPage() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-12 text-[#761180]">
-      <h2 className="text-3xl font-bold mb-4">Projects: Where Curiosity Meets Code</h2>
-      <p className="text-lg leading-relaxed mb-6">
+    <section className="max-w-6xl mx-auto px-6 py-6">
+      <h1 className="text-4xl font-bold text-center mb-6 text-black">Projects</h1>
+      {/* <p className="text-lg leading-relaxed mb-6">
         Projects, for me, are where ideas turn into something real. They&apos;re not just lines of code or checkboxes on a resume—they&apos;re how I explore, learn,
         and try to solve problems that actually matter. These projects represent my learning journey and my effort to make something useful, thoughtful,
         and a little bit better than before.
@@ -60,12 +60,12 @@ export default function ProjectPage() {
       <p className="text-lg leading-relaxed mb-6">
         Because at the end of the day, the best projects aren&apos;t just about
         showcasing what you can build—they&apos;re about demonstrating why you chose to build it.
-      </p>
+      </p> */}
 
 
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
-          <div key={index} className="bg-white rounded-xl shadow-md p-6 flex flex-col justify-between">
+          <div key={index} className="bg-white rounded-xl shadow-md p-6 flex flex-col justify-between border border-blue-200">
             <div>
                 <Image
                     src={project.thumbnail}
@@ -75,15 +75,15 @@ export default function ProjectPage() {
                     className="w-full h-60 object-cover"
                 />
               <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-sm text-gray-600 mb-4">Tech Stack: {project.techStack}</p>
-              <p className="text-sm text-gray-600 mb-4">Description: {project.description}</p>
+              <p className="text-sm text-gray-700 mb-4">Tech Stack: {project.techStack}</p>
+              <p className="text-sm text-gray-700 mb-4">Description: {project.description}</p>
             </div>
             <div className="mt-auto flex justify-between items-center">
               <a href={project.repo} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-medium hover:underline">
                 View Code
               </a>
-              <Link href={project.detailsRoute} className="bg-[#761180] text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
-                Details →
+              <Link href={project.detailsRoute} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                <span className="text-white">Details →</span>
               </Link>
             </div>
           </div>

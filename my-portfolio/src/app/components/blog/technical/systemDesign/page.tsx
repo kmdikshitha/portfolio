@@ -7,7 +7,16 @@ import ZoomableImage from '../../ZoomableImage';
 
 const SystemArchitectureBlog = () => {
   return (
-    <div className="max-w-3xl mx-auto px-3 py-3 text-gray-800 bg-white/90 backdrop-blur-md rounded-xl shadow-xl text-gray-800">
+    <div className="relative min-h-screen">
+      {/* Purplish-blue radial gradient background */}
+      <div 
+        className="absolute inset-0 w-full h-full z-0"
+        style={{
+          background: 'radial-gradient(circle at center, rgba(139, 69, 255, 0.3) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(255, 255, 255, 0.1) 100%)'
+        }}
+      ></div>
+      
+      <div className="relative z-10 max-w-3xl mx-auto px-3 py-3 text-gray-800 bg-white/90 backdrop-blur-md rounded-xl shadow-xl text-gray-800">
       {/* section 1 */}
       <div className="max-w-3xl mx-auto px-3 py-3 text-gray-800">
 
@@ -536,6 +545,7 @@ const SystemArchitectureBlog = () => {
         </div>
       </section>
 
+      </div>
     </div>
   )
 };

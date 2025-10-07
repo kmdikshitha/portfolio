@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ParticleBackground from "./components/ParticleBackground";
+// import ParticleBackground from "./components/ParticleBackground";
 import Navbar from "./components/Navbar";
 import Head from "./head";
 import Footer from "./components/footer"
@@ -36,7 +36,6 @@ export default function RootLayout({
         <Navbar />
         <Head/>
         <div className="relative">
-          <ParticleBackground />
           <CustomMDXProvider>
             <main className="pt-18 relative z-10">{children}</main>
           </CustomMDXProvider>
