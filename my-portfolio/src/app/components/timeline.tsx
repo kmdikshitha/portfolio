@@ -166,7 +166,7 @@
 // export default AboutTimeline;
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -176,7 +176,7 @@ import { Briefcase, Award } from 'lucide-react';
 import Image from 'next/image';
 
 const TimelineSection = () => {
-  const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
+  // const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
 
   // const toggleExpanded = (id: string) => {
   //   setExpandedExperience(expandedExperience === id ? null : id);
