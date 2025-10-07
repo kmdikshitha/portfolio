@@ -172,15 +172,15 @@ import {
   VerticalTimelineElement,
 } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import { Briefcase, GraduationCap, Award, ChevronDown, ChevronUp } from 'lucide-react';
+import { Briefcase, Award } from 'lucide-react';
 import Image from 'next/image';
 
 const TimelineSection = () => {
   const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
 
-  const toggleExpanded = (id: string) => {
-    setExpandedExperience(expandedExperience === id ? null : id);
-  };
+  // const toggleExpanded = (id: string) => {
+  //   setExpandedExperience(expandedExperience === id ? null : id);
+  // };
 
   return (
     <>

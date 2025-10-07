@@ -18,15 +18,15 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
       return () => clearInterval(interval);
     }, [images.length]);
   
-    const goToPrevious = (e: { stopPropagation: () => void; }) => {
-      e.stopPropagation();
-      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-    };
+    // const goToPrevious = (e: { stopPropagation: () => void; }) => {
+    //   e.stopPropagation();
+    //   setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    // };
   
-    const goToNext = (e: { stopPropagation: () => void; }) => {
-      e.stopPropagation();
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    };
+    // const goToNext = (e: { stopPropagation: () => void; }) => {
+    //   e.stopPropagation();
+    //   setCurrentIndex((prev) => (prev + 1) % images.length);
+    // };
     
     return (
         <div className="relative w-full h-full">
